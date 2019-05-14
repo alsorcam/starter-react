@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.css';
-import './assets/styles.css';
+import './assets/css/styles.css';
 import './index.css';
-import './i18n';
+import './shared/services/i18n';
 import * as serviceWorker from './serviceWorker';
 
 import App from './App';
