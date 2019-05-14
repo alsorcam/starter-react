@@ -7,7 +7,7 @@ class App extends React.Component  {
   }
   render() {
     return (
-      <div id="App" className="text-center bg-dark text-white d-flex flex-column align-items-center justify-content-center">
+      <div id="App" className="full-page container-fluid text-center bg-dark text-white d-flex flex-column align-items-center justify-content-center">
         <p>Welcome to Starter-React!</p>
         <button className="btn btn-info" onClick={this.gotoDemo}>Demo</button>
       </div>

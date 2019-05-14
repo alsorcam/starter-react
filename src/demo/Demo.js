@@ -2,8 +2,8 @@ import React from 'react';
 
 function Demo() {
   return (
-    <div>
-      <h3>Demo Page</h3>
+    <div id="Demo" className="full-page container-fluid bg-light">
+      <h1 className="d-flex justify-content-center py-3 text-info">DEMO</h1>
     </div>
   );
 }
