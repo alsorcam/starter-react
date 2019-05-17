@@ -16,7 +16,7 @@ export default class DialogMaterialUI extends React.Component {
           keepMounted
           onClose={this.props.onCancel}
           maxWidth="sm"
-          fullWidth="true"
+          fullWidth={true}
           aria-labelledby="alert-dialog-slide-title"
           aria-describedby="alert-dialog-slide-description">
           <DialogTitle id="alert-dialog-slide-title">
