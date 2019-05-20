@@ -1,6 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 import Table from 'react-bootstrap/Table';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInfo } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faInfo);
 
 export default class FakeBackend extends React.Component {
   constructor(props) {
@@ -33,7 +40,12 @@ export default class FakeBackend extends React.Component {
   render() {
     return (
       <div className="demo-section">
-        <h2>Fake Backend</h2>
+        <div className="form-row">
+          <h2 className="mr-2">Fake Backend</h2>
+          <OverlayTrigger placement="right" overlay={<Tooltip>The mock has to be running</Tooltip>}> 
+            <FontAwesomeIcon icon="info" className="text-info"/>
+          </OverlayTrigger>
+        </div>
         <div className="form-row mb-3">
           <button className="btn btn-sm btn-info mr-1" onClick={() => this.simulate()}>Simulate</button>
           <button className="btn btn-sm btn-outline-info" onClick={() => this.clearData()}>Clear</button>
