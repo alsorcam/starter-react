@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.9.3",
+    "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
     "faker": "^4.1.0",
     "i18next": "^15.1.1",
@@ -24,7 +25,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "mock:faker": "json-server api/generateData.js --port 4000",
-    "mock:manual": "json-server --watch api/db.json --port 4000"
+    "mock:start": "json-server --watch api/db.json --port 4000"
   },
   "eslintConfig": {
     "extends": "react-app"

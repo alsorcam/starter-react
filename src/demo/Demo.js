@@ -1,6 +1,7 @@
 import React from 'react';
-import Translations from './Translations'
-import ModalDialog from './ModalDialog'
+import Translations from './Translations';
+import ModalDialog from './ModalDialog';
+import FakeBackend from './FakeBackend';
 
 function Demo() {
   return (
@@ -8,6 +9,7 @@ function Demo() {
       <h1 className="d-flex justify-content-center py-3 text-info">DEMO</h1>
       <Translations />
       <ModalDialog />
+      <FakeBackend />
     </div>
   );
 }
