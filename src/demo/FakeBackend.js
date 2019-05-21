@@ -1,11 +1,20 @@
 import React from 'react';
 import axios from 'axios';
-import Table from 'react-bootstrap/Table';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Tooltip from 'react-bootstrap/Tooltip';
+import Tooltip from '@material-ui/core/Tooltip';
+
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfo } from '@fortawesome/free-solid-svg-icons';
+
+
+
+
 
 library.add(faInfo);
 
@@ -42,33 +51,33 @@ export default class FakeBackend extends React.Component {
       <div className="demo-section">
         <div className="form-row">
           <h2 className="mr-2">Fake Backend</h2>
-          <OverlayTrigger placement="right" overlay={<Tooltip>The mock has to be running</Tooltip>}> 
+          <Tooltip title="The mock has to be running" placement="right">
             <FontAwesomeIcon icon="info" className="text-info"/>
-          </OverlayTrigger>
+          </Tooltip>
         </div>
         <div className="form-row mb-3">
           <button className="btn btn-sm btn-info mr-1" onClick={() => this.simulate()}>Simulate</button>
           <button className="btn btn-sm btn-outline-info" onClick={() => this.clearData()}>Clear</button>
         </div>
-        <Table responsive>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Email</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.response.map(item => 
-            <tr>
-              <td>{item.id}</td>
-              <td>{item.firstName}</td>
-              <td>{item.lastName}</td>
-              <td>{item.email}</td>
-            </tr>
-            )}
-          </tbody>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>First Name</TableCell>
+              <TableCell>Last Name</TableCell>
+              <TableCell>Email</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {this.state.response.map(row => (
+              <TableRow key={row.id}>
+                <TableCell component="th" scope="row">
+                  {row.firstName}
+                </TableCell>
+                <TableCell>{row.lastName}</TableCell>
+                <TableCell>{row.email}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
         </Table>
       </div>
     );
