@@ -18,7 +18,7 @@ export default class CustomDialog extends React.Component {
         fullWidth={true}
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description">
-        <DialogTitle id="alert-dialog-slide-title">
+        <DialogTitle id="alert-dialog-slide-title" style={this.props.headerStyles}>
           {this.props.header}
         </DialogTitle>
         <DialogContent>
@@ -26,14 +26,16 @@ export default class CustomDialog extends React.Component {
             {this.props.body}
           </DialogContentText>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={this.props.onCancel} color="secondary">
-            Cancel
-          </Button>
-          <Button onClick={this.props.onAccept} color="primary">
-            Accept
-          </Button>
-        </DialogActions>
+        {this.props.actions ? this.props.actions : 
+          <DialogActions>
+            <Button onClick={this.props.onCancel} color="secondary">
+              Cancel
+            </Button>
+            <Button onClick={this.props.onAccept} color="primary">
+              Accept
+            </Button>
+          </DialogActions>
+        }
       </Dialog>
     );
   }
