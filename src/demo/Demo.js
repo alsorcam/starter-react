@@ -4,16 +4,21 @@ import Dialog from './Dialog';
 import FakeBackend from './FakeBackend';
 import BlockScreen from './BlockScreen';
 
-function Demo() {
-  return (
-    <div id="Demo" className="full-page container-fluid bg-light">
-      <h1 className="d-flex justify-content-center py-3 text-info">DEMO</h1>
-      <Translations />
-      <Dialog />
-      <FakeBackend />
-      <BlockScreen />
-    </div>
-  );
+const styles = {
+  card: {
+    marginBottom: '1rem'
+  }
+};
+export default class Demo extends React.Component {
+  render() {
+    return (
+      <div id="Demo" className="container">
+        <h1 className="d-flex justify-content-center py-3 text-white">DEMO</h1>
+        <Translations styles={styles}/>
+        <Dialog styles={styles} />
+        <FakeBackend styles={styles} />
+        <BlockScreen styles={styles} />
+      </div>
+    );
+  }
 }
-
-export default Demo;

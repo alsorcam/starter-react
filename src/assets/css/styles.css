@@ -1,3 +1,8 @@
+*::selection {
+  background-color: #f50057;
+  color: white;
+}
+
 .full-page {
   min-height: 100vh;
 }

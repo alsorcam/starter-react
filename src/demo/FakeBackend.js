@@ -1,22 +1,15 @@
 import React from 'react';
 import axios from 'axios';
-import Tooltip from '@material-ui/core/Tooltip';
-
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInfo } from '@fortawesome/free-solid-svg-icons';
-
-
-
-
-
-library.add(faInfo);
 
 export default class FakeBackend extends React.Component {
   constructor(props) {
@@ -48,17 +41,14 @@ export default class FakeBackend extends React.Component {
 
   render() {
     return (
-      <div className="demo-section">
-        <div className="form-row">
-          <h2 className="mr-2">Fake Backend</h2>
-          <Tooltip title="The mock has to be running" placement="right">
-            <FontAwesomeIcon icon="info" className="text-info"/>
-          </Tooltip>
-        </div>
-        <div className="form-row mb-3">
-          <button className="btn btn-sm btn-info mr-1" onClick={() => this.simulate()}>Simulate</button>
-          <button className="btn btn-sm btn-outline-info" onClick={() => this.clearData()}>Clear</button>
-        </div>
+      <Card style={this.props.styles.card}>
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">Fake Backend</Typography>
+          <Typography component="span">The mock has to be running</Typography>
+        <CardActions>
+          <Button size="small" variant="contained" color="secondary" onClick={() => this.simulate()}>Simulate</Button>
+          <Button size="small" variant="outlined" color="secondary" onClick={() => this.clearData()}>Clear</Button>
+        </CardActions>
         <Table>
           <TableHead>
             <TableRow>
@@ -69,17 +59,18 @@ export default class FakeBackend extends React.Component {
           </TableHead>
           <TableBody>
             {this.state.response.map(row => (
-              <TableRow key={row.id}>
-                <TableCell component="th" scope="row">
-                  {row.firstName}
-                </TableCell>
-                <TableCell>{row.lastName}</TableCell>
-                <TableCell>{row.email}</TableCell>
-              </TableRow>
+            <TableRow key={row.id}>
+              <TableCell component="th" scope="row">
+              {row.firstName}
+              </TableCell>
+              <TableCell>{row.lastName}</TableCell>
+              <TableCell>{row.email}</TableCell>
+            </TableRow>
             ))}
           </TableBody>
         </Table>
-      </div>
+        </CardContent>
+      </Card>
     );
   }
 }

@@ -1,8 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+
 import CustomDialog from '../shared/components/CustomDialog';
 
 export default class Dialog extends React.Component {
-
   constructor(props) {
     super(props);
     this.handleModal = this.handleModal.bind(this);
@@ -27,14 +33,20 @@ export default class Dialog extends React.Component {
 
   render() {
     return (
-      <div className="demo-section">
-        <h2>Dialog</h2>
-        <div className="d-flex">
-          <button className="btn btn-sm btn-info" onClick={this.handleModal}>Show</button>
-        </div>
+      <Card style={this.props.styles.card}>
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">Dialog</Typography>
+          <CardActions>
+            <Button size="small" variant="contained" color="secondary" onClick={this.handleModal}>Show</Button>
+          </CardActions>
+        </CardContent>
         <CustomDialog header="Header" body="Body" show={this.state.show}
           onCancel={this.cancelModal} onAccept={this.acceptModal} />
-      </div>
+      </Card>
     );
   }
 }
+
+Dialog.propTypes = {
+  classes: PropTypes.object,
+};

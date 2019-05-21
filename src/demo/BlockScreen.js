@@ -1,6 +1,12 @@
 import React from 'react';
 import BlockUi from 'react-block-ui';
 import 'react-block-ui/style.css';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
 
 export default class BlockScreen extends React.Component {
   constructor(props) {
@@ -36,18 +42,21 @@ export default class BlockScreen extends React.Component {
   render() {
     return (
         <BlockUi tag="div" blocking={this.state.blocking}>
-          <div class="demo-section">
-            <h2>Block UI</h2>
-            <label className="input-label d-flex align-items-baseline">
-              Seconds
-              <input type="number" className="form-control form-control-sm ml-3 w-auto" value={this.state.seconds} onChange={this.handleSecondsChange} />
-            </label>
-            <button className="btn btn-info btn-sm" onClick={this.toggleBlocking}>
-              {this.state.blocking
-                ? `Unblocking in ${this.state.countdown} seconds`
-                : 'Trigger block'}
-            </button>
-          </div>
+          <Card style={this.props.styles.card}>
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="h2">Block UI</Typography>
+              <CardActions>
+              <TextField id="number-seconds" label="Seconds" type="number"
+                  value={this.state.seconds} onChange={this.handleSecondsChange}
+                  inputProps={{ min: 1 }}/>
+                <Button size="small" variant="contained" color="secondary" onClick={this.toggleBlocking}>
+                  {this.state.blocking
+                  ? `Unblocking in ${this.state.countdown} seconds`
+                  : 'Block'}
+                </Button>
+              </CardActions>
+            </CardContent>
+          </Card>
         </BlockUi>
     );
   }
