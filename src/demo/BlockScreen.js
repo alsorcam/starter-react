@@ -35,8 +35,7 @@ export default class BlockScreen extends React.Component {
 
   render() {
     return (
-      <div>
-        <BlockUi tag="div" blocking={this.state.blocking} className="my-2">
+        <BlockUi tag="div" blocking={this.state.blocking}>
           <div class="demo-section">
             <h2>Block UI</h2>
             <label className="input-label d-flex align-items-baseline">
@@ -50,7 +49,6 @@ export default class BlockScreen extends React.Component {
             </button>
           </div>
         </BlockUi>
-      </div>
     );
   }
 }
