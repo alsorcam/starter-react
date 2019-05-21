@@ -11,15 +11,7 @@ let generateData = () => {
         });
     }
 
-    let companies = [];
-    for (let id = 0; id < 30; id++) {
-        companies.push({
-            "id": id,
-            "name": faker.company.companyName()
-        });
-    }
-
-    return { "workers": workers, "companies": companies };
+    return { "workers": workers };
 };
 
 module.exports = generateData;

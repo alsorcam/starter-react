@@ -4,6 +4,7 @@ Base project a react app with a demo section of the functionalities.
 ## Characteristics
 
 - React 16.8.6
+- Bootstrap 4.3.1
 - Routing: react-router-dom
 - i18n: [i18next](https://react.i18next.com/)
 - Fake backend: [json-server](https://github.com/typicode/json-server), [faker](https://www.npmjs.com/package/faker)
@@ -41,7 +42,9 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ### `npm run mock:start`
 
 Starts a mock server that contains the static data of the `api/db.json` file.
+Open [http://localhost:4000/users](http://localhost:4000/users) to view the results it in the browser.
 
 ### `npm run mock:faker`with
 
 Starts a server that contains data automatically generated with the `api/generateData.js` script via faker.js.
+Open [http://localhost:4000/users](http://localhost:4000/users) to view the results it in the browser.
