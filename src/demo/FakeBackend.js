@@ -46,8 +46,8 @@ export default class FakeBackend extends React.Component {
           <Typography gutterBottom variant="h5" component="h2">Fake Backend</Typography>
           <Typography component="span">The mock has to be running</Typography>
         <CardActions>
-          <Button size="small" variant="contained" color="secondary" onClick={() => this.simulate()}>Simulate</Button>
-          <Button size="small" variant="outlined" color="secondary" onClick={() => this.clearData()}>Clear</Button>
+          <Button size="small" variant="contained" color="secondary" onClick={this.simulate}>Simulate</Button>
+          <Button size="small" variant="outlined" color="secondary" onClick={this.clearData}>Clear</Button>
         </CardActions>
         <Table>
           <TableHead>
