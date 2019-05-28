@@ -1,27 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import './assets/css/styles.css';
 import './index.css';
 import './shared/services/i18n';
 import * as serviceWorker from './serviceWorker';
+import store from './redux/store';
 
 import App from './App';
 import Demo from './demo/Demo';
 import NotFound from './NotFound';
 
 const routing = (
-  <Router>
-    <div>
-      <Switch>
-        <Route exact path="/" component={App} />
-        <Route path="/demo" component={Demo} />
-        <Route component={NotFound} />
-      </Switch>
-    </div>
-  </Router>
+  <Provider store={store}>
+    <Router>
+      <div>
+        <Switch>
+          <Route exact path="/" component={App} />
+          <Route path="/demo" component={Demo} />
+          <Route component={NotFound} />
+        </Switch>
+      </div>
+    </Router>
+  </Provider>
 )
 
 ReactDOM.render(routing, document.getElementById('root'));
