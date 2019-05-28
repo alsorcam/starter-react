@@ -6,10 +6,12 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-import CustomDialog from '../shared/components/CustomDialog';
-import DialogActions from '@material-ui/core/DialogActions';
+import { ModalContainer } from '../shared/components/CustomDialog';
 
-export default class Dialog extends React.Component {
+import * as actions from './../redux/actions';
+import { connect } from 'react-redux';
+
+class Dialog extends React.Component {
   constructor(props) {
     super(props);
     this.handleSimpleModal = this.handleSimpleModal.bind(this);
@@ -45,48 +47,19 @@ export default class Dialog extends React.Component {
   }
 
   render() {
-    const customActions = (
-      <DialogActions>
-        <Button onClick={this.cancelModal} color="secondary" variant="outlined">
-          Close
-        </Button>
-        <Button onClick={this.acceptModal} color="primary" variant="contained">
-          Confirm
-        </Button>
-      </DialogActions>
-    );
-
-
-    const headerStyles = {
-      backgroundColor: '#f50057'
-    };
-
     return (
       <Card style={this.props.styles.card}>
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">Dialog</Typography>
           <CardActions>
-            <Button size="small" variant="contained" color="secondary" onClick={this.handleSimpleModal}>Simple Dialog</Button>
-            <Button size="small" variant="contained" color="secondary" onClick={this.handleCustomActions}>Custom Actions</Button>
-            <Button size="small" variant="contained" color="secondary" onClick={this.handleCustomHeader}>Custom Header</Button>
+            <Button size="small" variant="contained" color="secondary" onClick={
+              () => this.props.dispatch(actions.openModal({
+              header: 'Modal header',
+              content: <div>Custom Modal Content</div>
+            }))}>Redux Modal</Button>
           </CardActions>
         </CardContent>
-        <CustomDialog
-          header="Simple Dialog Header"
-          body="This is the body of a simple dialog."
-          show={this.state.showSimple}
-          onCancel={this.cancelModal} onAccept={this.acceptModal}/>
-        <CustomDialog
-          header="Custom Actions Dialog Header"
-          body="This is the body of a dialog that has custom actions. These actions below the text are passed as an attributte."
-          show={this.state.showCustomActions}
-          actions={customActions} />
-        <CustomDialog
-          header="Custom Header Dialog"
-          headerStyles={headerStyles}
-          body="This is the body of a dialog that has custom header styles."
-          show={this.state.showCustomHeader}
-          onCancel={this.cancelModal} onAccept={this.acceptModal}/>
+        <ModalContainer />
       </Card>
     );
   }
@@ -95,3 +68,12 @@ export default class Dialog extends React.Component {
 Dialog.propTypes = {
   classes: PropTypes.object,
 };
+const DialogContainer = connect(
+  null,
+	function mapDispatchToProps(dispatch) {
+    return {
+      dispatch
+    };
+	}
+)(Dialog);
+export default DialogContainer;
