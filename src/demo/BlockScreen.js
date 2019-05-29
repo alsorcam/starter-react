@@ -41,23 +41,23 @@ export default class BlockScreen extends React.Component {
 
   render() {
     return (
-        <BlockUi tag="div" blocking={this.state.blocking}>
-          <Card style={this.props.styles.card}>
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">Block UI</Typography>
-              <CardActions>
-              <TextField id="number-seconds" label="Seconds" type="number"
-                  value={this.state.seconds} onChange={this.handleSecondsChange}
-                  inputProps={{ min: 1 }}/>
-                <Button size="small" variant="contained" color="secondary" onClick={this.toggleBlocking}>
-                  {this.state.blocking
-                  ? `Unblocking in ${this.state.countdown} seconds`
-                  : 'Block'}
-                </Button>
-              </CardActions>
-            </CardContent>
-          </Card>
-        </BlockUi>
+      <BlockUi tag="div" blocking={this.state.blocking}>
+        <Card style={this.props.styles.card}>
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">Block UI</Typography>
+            <CardActions>
+            <TextField id="number-seconds" label="Seconds" type="number"
+                value={this.state.seconds} onChange={this.handleSecondsChange}
+                inputProps={{ min: 1 }}/>
+              <Button size="small" variant="contained" color="secondary" onClick={this.toggleBlocking}>
+                {this.state.blocking
+                ? `Unblocking in ${this.state.countdown} seconds`
+                : 'Block'}
+              </Button>
+            </CardActions>
+          </CardContent>
+        </Card>
+      </BlockUi>
     );
   }
 }

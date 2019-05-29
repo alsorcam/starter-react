@@ -9,6 +9,7 @@ const styles = {
     marginBottom: '1rem'
   }
 };
+
 export default class Demo extends React.Component {
   render() {
     return (
