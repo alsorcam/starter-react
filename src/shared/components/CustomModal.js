@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { connect } from 'react-redux';
-
-import * as actions from './../../redux/actions';
 
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+
+import { connect } from 'react-redux';
+import { closeModal } from '../../redux/modal.store';
 
 class ModalPortal extends React.PureComponent {
   constructor(props) {
@@ -77,7 +77,7 @@ class Modal extends React.Component {
 
 class Modals extends React.Component {
   render() {
-    const modals = this.props.modals.map((item,i) => <ModalPortal key={i} ><Modal item={item} onClose={(item) => this.props.dispatch(actions.closeModal(item))}/></ModalPortal>)
+    const modals = this.props.modals.map((item,i) => <ModalPortal key={i} ><Modal item={item} onClose={(item) => this.props.dispatch(closeModal(item))}/></ModalPortal>)
     return (
       <div className={modals.length>0 ? "modals" : ""}>
         {modals}

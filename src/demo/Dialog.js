@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-import { ModalContainer } from '../shared/components/CustomModal';
-
-import * as actions from './../redux/actions';
 import { connect } from 'react-redux';
+import { openModal } from '../redux/modal.store';
+
+import { ModalContainer } from '../shared/components/CustomModal';
 
 class Dialog extends React.Component {
   render() {
@@ -19,7 +20,7 @@ class Dialog extends React.Component {
           <Typography gutterBottom variant="h5" component="h2">Dialog</Typography>
           <CardActions>
             <Button size="small" variant="contained" color="secondary" onClick={
-              () => this.props.dispatch(actions.openModal({
+              () => this.props.dispatch(openModal({
               header: 'Custom Modal Header',
               content: <div>Custom Modal Content</div>
             }))}>Redux Modal</Button>

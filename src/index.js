@@ -8,14 +8,14 @@ import './assets/css/styles.css';
 import './index.css';
 import './shared/services/i18n';
 import * as serviceWorker from './serviceWorker';
-import store from './redux/store';
+import { modalStore } from './redux/modal.store';
 
 import App from './App';
 import Demo from './demo/Demo';
 import NotFound from './NotFound';
 
 const routing = (
-  <Provider store={store}>
+  <Provider store={modalStore}>
     <Router>
       <div>
         <Switch>
