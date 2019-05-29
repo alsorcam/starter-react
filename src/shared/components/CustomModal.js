@@ -8,10 +8,9 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-class MyPortal extends React.PureComponent {
+class ModalPortal extends React.PureComponent {
   constructor(props) {
     super(props);
     this.el = document.createElement('div');
@@ -52,44 +51,33 @@ class Modal extends React.Component {
     const { header } = this.props.item;
     
     return (
-      // <div className="modal-wrapper">
-	    //   <div>
-      //     {content}
-      //   </div>
-      //   <div>
-      //     <button className="modal-button" onClick={() => this.onConfirm()}>Confirm</button>
-      //     <button className="modal-button" onClick={() => this.onClose()}>Close</button>
-      //   </div>
-      // </div>
-           <Dialog
-           open={true}
-           onClose={this.onClose()}
-           maxWidth="sm"
-           fullWidth={true}
-           aria-labelledby="alert-dialog-slide-title"
-           aria-describedby="alert-dialog-slide-description">
-           <DialogTitle id="alert-dialog-slide-title">{header}</DialogTitle>
-           <DialogContent>
-             <DialogContentText id="alert-dialog-slide-description">
-               {content}
-             </DialogContentText>
-           </DialogContent>
-           <DialogActions>
-             <Button onClick={this.onClose()} color="secondary">
-               Close
-             </Button>
-             <Button onClick={this.onConfirm()} color="primary">
-               Accept
-             </Button>
-           </DialogActions>
-         </Dialog>
+      <Dialog
+        open={true}
+        onClose={this.onClose.bind(this)}
+        maxWidth="sm"
+        fullWidth={true}
+        aria-labelledby="alert-dialog-slide-title"
+        aria-describedby="alert-dialog-slide-description">
+        <DialogTitle id="alert-dialog-slide-title">{header}</DialogTitle>
+        <DialogContent>
+          {content}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={this.onClose.bind(this)} color="secondary">
+            Close
+          </Button>
+          <Button onClick={this.onConfirm.bind(this)} color="primary">
+            Accept
+          </Button>
+        </DialogActions>
+      </Dialog>
     );
   }
 }
 
 class Modals extends React.Component {
   render() {
-    const modals = this.props.modals.map((item,i) => <MyPortal key={i} ><Modal item={item} onClose={(item) => this.props.dispatch(actions.closeModal(item))}/></MyPortal>)
+    const modals = this.props.modals.map((item,i) => <ModalPortal key={i} ><Modal item={item} onClose={(item) => this.props.dispatch(actions.closeModal(item))}/></ModalPortal>)
     return (
       <div className={modals.length>0 ? "modals" : ""}>
         {modals}
@@ -97,6 +85,7 @@ class Modals extends React.Component {
     );
   }
 }
+
 export const ModalContainer = connect(
 	function mapStateToProps(state) {
 		return {
