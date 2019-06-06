@@ -1,63 +1,42 @@
 import React from 'react';
-import BlockUi from 'react-block-ui';
-import 'react-block-ui/style.css';
+
+import { connect } from 'react-redux';
+import { blockUI, unblockUI, blockUIStore } from '../redux/blockUI.store';
+import { Provider } from 'react-redux';
+import { BlockUIContainer } from '../shared/components/CustomBlockUI';
+
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
 
-export default class BlockScreen extends React.Component {
-  constructor(props) {
-    super(props);
-    this.toggleBlocking = this.toggleBlocking.bind(this);
-    this.handleSecondsChange = this.handleSecondsChange.bind(this);
-    this.state = {
-      blocking: false,
-      seconds: 3
-    };
-  }
-
-  toggleBlocking() {
-    if (!this.state.blocking) {
-      this.unblockIn(this.state.seconds);
-    }
-    this.setState({blocking: !this.state.blocking});
-  }
-
-  unblockIn(seconds) {
-    this.setState({countdown: seconds});
-    if(!seconds) {
-      this.setState({blocking: false});
-    } else {
-      setTimeout(() => this.unblockIn(--seconds), 1000)
-    }
-  }
-
-  handleSecondsChange(event) {
-    this.setState({ seconds: event.target.value });
-  }
-
+class BlockScreen extends React.Component {
   render() {
+    const children = (<Typography component="p">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Typography>);
+
     return (
-      <BlockUi tag="div" blocking={this.state.blocking}>
+      <Provider store={blockUIStore}>
         <Card style={this.props.styles.card}>
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">Block UI</Typography>
+            <BlockUIContainer content={children}></BlockUIContainer>
             <CardActions>
-            <TextField id="number-seconds" label="Seconds" type="number"
-                value={this.state.seconds} onChange={this.handleSecondsChange}
-                inputProps={{ min: 1 }}/>
-              <Button size="small" variant="contained" color="secondary" onClick={this.toggleBlocking}>
-                {this.state.blocking
-                ? `Unblocking in ${this.state.countdown} seconds`
-                : 'Block'}
-              </Button>
+              <Button size="small" variant="contained" color="secondary" onClick={() => this.props.dispatch(blockUI())}>BLOCK</Button>
+              <Button size="small" variant="contained" color="secondary" onClick={() => this.props.dispatch(unblockUI())}>UNBLOCK</Button>
             </CardActions>
           </CardContent>
         </Card>
-      </BlockUi>
+      </Provider>
     );
   }
 }
+
+const BlockScreenContainer = connect(
+  function mapDispatchToProps(dispatch) {
+    return {
+      dispatch
+    };
+  }
+)(BlockScreen);
+export default BlockScreenContainer;
